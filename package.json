@@ -1,0 +1,23 @@
+{
+  "name": "js-polyfills",
+  "version": "1.0.0",
+  "description": "Polyfills for JS methods",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddhigate/js-polyfills.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siddhigate/js-polyfills/issues"
+  },
+  "homepage": "https://github.com/siddhigate/js-polyfills#readme",
+  "devDependencies": {
+    "jest": "^29.0.2"
+  }
+}
