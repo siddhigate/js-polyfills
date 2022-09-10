@@ -1,6 +1,14 @@
 require("./copyWithin");
 
 describe("copyWithin method", () => {
+
+  test("one param:", () => {
+    const arr = ["a", "b", "c", "d", "e"];
+    const result = arr.myCopyWithin(4);
+    const expectedResult = ['a', 'b', 'c', 'd', 'a'];
+    expect(result).toEqual(expectedResult);
+  });
+
   test("three params: target, start and end", () => {
     const arr = ["a", "b", "c", "d", "e"];
     const result = arr.myCopyWithin(0, 3, 4);
