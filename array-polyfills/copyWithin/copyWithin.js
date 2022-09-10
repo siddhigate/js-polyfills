@@ -15,7 +15,7 @@ Array.prototype.myCopyWithin = function (
     end = this.length + end;
   }
 
-  for (let i = start; i < end; i++) {
+  for (let i = start; i < end && target < this.length; i++) {
     this[target] = this[i];
     target++;
   }
