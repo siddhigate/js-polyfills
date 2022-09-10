@@ -37,7 +37,7 @@ describe("splice method", () => {
     expect(arr).toEqual(expectedArray);
   });
 
-  test("two numbers and one character -> replace one element", () => {
+  test("start, deleteCount = 0, and item parameter -> add item at start index", () => {
     const arr = ["a", "b", "c", "d", "e"];
     const result = arr.mySplice(1, 0, "Z");
     const expectedResult = [];
@@ -46,7 +46,7 @@ describe("splice method", () => {
     expect(arr).toEqual(expectedArray);
   });
 
-  test("two numbers and two characters -> insert one element and replace one element", () => {
+  test("start, deleteCount = 1 and items -> deletes and adds new items", () => {
     const arr = ["a", "b", "c", "d", "e"];
     const result = arr.mySplice(1, 1, "Z", "Y");
     const expectedResult = ["b"];
