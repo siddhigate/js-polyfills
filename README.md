@@ -1,4 +1,4 @@
-# js-polyfills
+# JS-Polyfills
  Polyfills for JS methods:
  
  ## Array methods:
