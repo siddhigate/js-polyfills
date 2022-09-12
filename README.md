@@ -29,6 +29,7 @@
 ### Iterative methods
 
 1. forEach
+2. error handling
 
 ### Map, filter, and reduce
 
