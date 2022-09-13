@@ -1,4 +1,4 @@
-# js-polyfills
+# JS-Polyfills
  Polyfills for JS methods:
  
  ## Array methods:
@@ -29,6 +29,7 @@
 ### Iterative methods
 
 1. forEach
+2. error handling
 
 ### Map, filter, and reduce
 
