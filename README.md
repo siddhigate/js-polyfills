@@ -1,8 +1,15 @@
 # js-polyfills
  Polyfills for JS methods:
  
+ ## Promise methods:
+ This repo contains the polyfills of the following Promise methods:
+ - all
+ - any
+ - race
+ - allSettled
+ 
  ## Array methods:
- This repo contains the polyfills of the following methods:
+ This repo contains the polyfills of the following array methods:
  ### Searching methods:
 1. at
 2. find
