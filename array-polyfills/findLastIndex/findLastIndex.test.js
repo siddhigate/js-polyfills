@@ -14,4 +14,23 @@ describe("findIndex method", () => {
     const expectedResult = -1;
     expect(result).toBe(expectedResult);
   });
+
+  test("invokes callback in the expected way", () => {
+    const arr = [123, 456, 789];
+    const callback = jest.fn(() => false);
+    arr.myFindLastIndex(callback);
+    expect(callback).toHaveBeenCalledTimes(3);
+    expect(callback).toHaveBeenNthCalledWith(1, 789, 2, arr);
+    expect(callback).toHaveBeenNthCalledWith(2, 456, 1, arr);
+    expect(callback).toHaveBeenNthCalledWith(3, 123, 0, arr);
+  });
+
+  test("does not invoke callback after element found", () => {
+    const arr = [123, 456, 789];
+    const callback = jest.fn((element) => element === 456);
+    arr.myFindLastIndex(callback);
+    expect(callback).toHaveBeenCalledTimes(2);
+    expect(callback).toHaveBeenNthCalledWith(1, 789, 2, arr);
+    expect(callback).toHaveBeenNthCalledWith(2, 456, 1, arr);
+  });
 });
