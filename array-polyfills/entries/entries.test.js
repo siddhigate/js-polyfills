@@ -21,4 +21,26 @@ describe("entries method", () => {
 
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const arr = ["a", undefined, "c"];
+    const result = [...arr.myEntries()];
+    const expectedResult = [
+      [0, "a"],
+      [1, undefined],
+      [2, "c"],
+    ];
+    expect(result).toStrictEqual(expectedResult);
+  });
+
+  test("array containing empty elements", () => {
+    const arr = ["a", , "c"];
+    const result = [...arr.myEntries()];
+    const expectedResult = [
+      [0, "a"],
+      [1, undefined],
+      [2, "c"],
+    ];
+    expect(result).toStrictEqual(expectedResult);
+  });
 });

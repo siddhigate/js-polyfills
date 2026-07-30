@@ -15,4 +15,13 @@ describe("keys method", () => {
 
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    expect([...["a", undefined, "c"].myKeys()]).toEqual([0, 1, 2]);
+  });
+
+  test("array containing empty elements", () => {
+    // keys does not skip empty elements
+    expect([...["a", , "c"].myKeys()]).toEqual([0, 1, 2]);
+  });
 });

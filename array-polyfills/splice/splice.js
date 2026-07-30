@@ -38,11 +38,20 @@ Array.prototype.mySplice = function () {
   // delete elements if delete count > 0
   if (deleteCount > 0) {
     for (let i = 0; i < deleteCount; i++) {
-      returnResult.push(this[start + i]);
+      if (start + i in this) {
+        returnResult[i] = this[start + i];
+      } else {
+        returnResult.length += 1;
+      }
     }
 
     for (let i = start, j = 0; i <= this.length - deleteCount; i++, j++) {
-      this[start + j] = this[start + j + deleteCount];
+      const from = start + j + deleteCount;
+      if (from in this) {
+        this[start + j] = this[from];
+      } else {
+        delete this[start + j];
+      }
     }
 
     this.length = this.length - deleteCount;
@@ -50,8 +59,16 @@ Array.prototype.mySplice = function () {
 
   // add elements if items are provided
   if (items.length > 0) {
-    for (let i = this.length - 1; i >= start; i--) {
-      this[i + items.length] = this[i];
+    const oldLength = this.length;
+    // grow first, so moving an empty element can delete its new slot
+    this.length = oldLength + items.length;
+
+    for (let i = oldLength - 1; i >= start; i--) {
+      if (i in this) {
+        this[i + items.length] = this[i];
+      } else {
+        delete this[i + items.length];
+      }
     }
 
     for (let i = 0; i < items.length; i++) {

@@ -22,4 +22,12 @@ describe("at method", () => {
   test("out of range negative param", () => {
     expect(arr.myAt(-6)).toBeUndefined();
   });
+  
+  test("array containing undefined elements", () => {
+    expect(["a", undefined, "c"].myAt(1)).toBeUndefined();
+  });
+
+  test("array containing empty elements", () => {
+    expect(["a", , "c"].myAt(1)).toBeUndefined();
+  });
 });

@@ -2,6 +2,10 @@ Array.prototype.myFlatMap = function (cb) {
   let result = [];
 
   for (let i = 0; i < this.length; i++) {
+    if (!(i in this)) {
+      continue;
+    }
+
     let cbRes = cb(this[i], i, this);
 
     if (Array.isArray(cbRes)) {

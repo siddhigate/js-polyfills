@@ -21,4 +21,15 @@ describe("fill method", () => {
     const expectedResult = ["a", "*", "*", "*", "e"];
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const arr = ["a", undefined, "c"];
+    expect(arr.myFill("*")).toStrictEqual(["*", "*", "*"]);
+  });
+
+  test("array containing empty elements", () => {
+    // fill replaces empty elements with real values
+    const arr = ["a", , "c"];
+    expect(arr.myFill("*")).toStrictEqual(["*", "*", "*"]);
+  });
 });

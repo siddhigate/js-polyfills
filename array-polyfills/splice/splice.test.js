@@ -54,4 +54,32 @@ describe("splice method", () => {
     expect(result).toEqual(expectedResult);
     expect(arr).toEqual(expectedArray);
   });
+
+  test("array containing undefined elements", () => {
+    const arr = ["a", undefined, "c"];
+    const result = arr.mySplice(1, 1);
+    expect(result).toStrictEqual([undefined]);
+    expect(arr).toStrictEqual(["a", "c"]);
+  });
+
+  test("array containing empty elements", () => {
+    const arr = ["a", , "c"];
+    const result = arr.mySplice(1, 1);
+    expect(result).toHaveLength(1);
+    expect(0 in result).toBe(false);
+    expect(arr).toStrictEqual(["a", "c"]);
+  });
+
+  test("empty elements stay empty when items are inserted", () => {
+    const arr = ["a", , "c"];
+    arr.mySplice(1, 0, "Z");
+    expect(arr).toStrictEqual(["a", "Z", , "c"]);
+  });
+
+  test("empty elements stay empty when elements are removed", () => {
+    const arr = ["a", "b", , "d"];
+    const result = arr.mySplice(0, 1);
+    expect(result).toStrictEqual(["a"]);
+    expect(arr).toStrictEqual(["b", , "d"]);
+  });
 });

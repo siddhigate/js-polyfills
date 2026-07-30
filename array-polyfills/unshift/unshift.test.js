@@ -9,4 +9,18 @@ describe("unshift method", () => {
     expect(result).toBe(expectedResult);
     expect(array).toEqual(expectedArray);
   });
+
+  test("array containing undefined elements", () => {
+    const array = ["a", undefined, "c"];
+    const result = array.myUnshift("z");
+    expect(result).toBe(4);
+    expect(array).toStrictEqual(["z", "a", undefined, "c"]);
+  });
+
+  test("array containing empty elements", () => {
+    const array = ["a", , "c"];
+    const result = array.myUnshift("z");
+    expect(result).toBe(4);
+    expect(array).toStrictEqual(["z", "a", , "c"]);
+  });
 });

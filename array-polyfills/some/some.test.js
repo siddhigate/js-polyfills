@@ -12,4 +12,28 @@ describe("every method", () => {
     const hasOdd = arr.mySome((el) => el % 2 !== 0);
     expect(hasOdd).toEqual(false);
   });
+
+  test("array containing undefined elements", () => {
+    const fn = jest.fn((element) => element === undefined);
+    const arr = ["a", undefined, "c"];
+
+    const result = arr.mySome(fn);
+
+    expect(result).toBe(true);
+    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenNthCalledWith(1, "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, undefined, 1, arr);
+  });
+
+  test("array containing empty elements", () => {
+    const fn = jest.fn((element) => element === undefined);
+    const arr = ["a", , "c"];
+
+    const result = arr.mySome(fn);
+
+    expect(result).toBe(false);
+    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenNthCalledWith(1, "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, "c", 2, arr);
+  });
 });

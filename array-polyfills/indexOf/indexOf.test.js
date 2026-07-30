@@ -21,4 +21,15 @@ describe("findIndex method", () => {
     const expectedResult = 5;
     expect(result).toBe(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const arr = ["a", undefined, "c"];
+    expect(arr.myIndexOf(undefined)).toBe(1);
+  });
+
+  test("array containing empty elements", () => {
+    const arr = ["a", , "c"];
+    expect(arr.myIndexOf(undefined)).toBe(-1);
+    expect(arr.myIndexOf("c")).toBe(2);
+  });
 });

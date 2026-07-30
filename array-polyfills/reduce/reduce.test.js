@@ -20,4 +20,36 @@ describe("reduce method", () => {
     const expectedResult = {even: 2, odd: 3};
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const fn = jest.fn((prev) => prev);
+    const arr = ["a", undefined, "c"];
+
+    arr.myReduce(fn, "seed");
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(1, "seed", "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, "seed", undefined, 1, arr);
+    expect(fn).toHaveBeenNthCalledWith(3, "seed", "c", 2, arr);
+  });
+
+  test("array containing empty elements", () => {
+    const fn = jest.fn((prev) => prev);
+    const arr = ["a", , "c"];
+
+    arr.myReduce(fn, "seed");
+
+    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenNthCalledWith(1, "seed", "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, "seed", "c", 2, arr);
+  });
+
+  test("empty elements are skipped when seeding without initialValue", () => {
+    const arr = [, 1, 2];
+    expect(arr.myReduce((prev, curr) => prev + curr)).toBe(3);
+  });
+
+  test("all empty elements and no initialValue throws", () => {
+    expect(() => [, ,].myReduce((prev, curr) => prev + curr)).toThrow(TypeError);
+  });
 });

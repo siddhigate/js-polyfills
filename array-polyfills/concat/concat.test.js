@@ -30,4 +30,15 @@ describe("concat method", () => {
     expect(arr1.myConcat(arr4)).toEqual([1, 2, 3, 10, [11, 12, 13]]);
   });
 
+  test("array containing undefined elements", () => {
+    expect([1, undefined, 3].myConcat([4])).toStrictEqual([1, undefined, 3, 4]);
+  });
+
+  test("array containing empty elements", () => {
+    expect([1, , 3].myConcat([4])).toStrictEqual([1, , 3, 4]);
+  });
+
+  test("empty elements of an array param stay empty", () => {
+    expect([0].myConcat([1, , 3])).toStrictEqual([0, 1, , 3]);
+  });
 });
