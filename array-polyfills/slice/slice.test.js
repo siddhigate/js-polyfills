@@ -3,7 +3,7 @@ require("./slice");
 describe("slice method", () => {
   test("one positive parameter", () => {
     const arr = ["a", "b", "c", "d", "e"];
-    const result = arr.slice(2);
+    const result = arr.mySlice(2);
     const expectedResult = ["c", "d", "e"];
     expect(result).toEqual(expectedResult);
   });
@@ -36,4 +36,14 @@ describe("slice method", () => {
     expect(result).toEqual(expectedResult);
   });
 
+  test("array containing undefined elements", () => {
+    const arr = ["a", undefined, "c"];
+    expect(arr.mySlice()).toStrictEqual(["a", undefined, "c"]);
+  });
+
+  test("array containing empty elements", () => {
+    const arr = ["a", , "c"];
+    expect(arr.mySlice()).toStrictEqual(["a", , "c"]);
+    expect(arr.mySlice(1)).toStrictEqual([, "c"]);
+  });
 });

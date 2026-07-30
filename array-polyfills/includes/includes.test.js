@@ -28,4 +28,13 @@ describe("findIndex method", () => {
     const expectedResult = false;
     expect(result).toBe(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    expect(["a", undefined, "c"].myIncludes(undefined)).toBe(true);
+  });
+
+  test("array containing empty elements", () => {
+    // includes reads empty elements as undefined
+    expect(["a", , "c"].myIncludes(undefined)).toBe(true);
+  });
 });

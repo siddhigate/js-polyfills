@@ -2,10 +2,13 @@ Array.prototype.myJoin = function (separator = ",") {
   let result = "";
 
   for (let i = 0; i < this.length; i++) {
-    if (i === this.length - 1) {
+    if (i > 0) {
+      result += separator;
+    }
+
+    // empty, undefined and null elements all stringify to ""
+    if (this[i] !== undefined && this[i] !== null) {
       result += this[i];
-    } else {
-      result += this[i] + separator;
     }
   }
 

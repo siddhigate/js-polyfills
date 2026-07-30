@@ -1,18 +1,24 @@
 Array.prototype.myConcat = function () {
   let newArr = [];
 
-  for (let i = 0; i < this.length; i++) {
-    newArr.push(this[i]);
+  // copies arr onto the end of newArr, keeping empty elements empty
+  function append(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (i in arr) {
+        newArr[newArr.length] = arr[i];
+      } else {
+        newArr.length += 1;
+      }
+    }
   }
+
+  append(this);
 
   for (let i = 0; i < arguments.length; i++) {
     if (Array.isArray(arguments[i])) {
-      const dummyArr = arguments[i];
-      for (let i = 0; i < dummyArr.length; i++) {
-        newArr.push(dummyArr[i]);
-      }
+      append(arguments[i]);
     } else {
-      newArr.push(arguments[i]);
+      newArr[newArr.length] = arguments[i];
     }
   }
 

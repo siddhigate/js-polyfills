@@ -21,4 +21,27 @@ describe("flatMap method", () => {
     const expectedResult = [10, [21], 30, 42, 50];
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const fn = jest.fn((element) => element);
+    const arr = ["a", undefined, "c"];
+
+    const result = arr.myFlatMap(fn);
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(2, undefined, 1, arr);
+    expect(result).toStrictEqual(["a", undefined, "c"]);
+  });
+
+  test("array containing empty elements", () => {
+    const fn = jest.fn((element) => element);
+    const arr = ["a", , "c"];
+
+    const result = arr.myFlatMap(fn);
+
+    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenNthCalledWith(1, "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, "c", 2, arr);
+    expect(result).toStrictEqual(["a", "c"]);
+  });
 });

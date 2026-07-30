@@ -15,4 +15,15 @@ describe("values method", () => {
 
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const result = [...["a", undefined, "c"].myValues()];
+    expect(result).toStrictEqual(["a", undefined, "c"]);
+  });
+
+  test("array containing empty elements", () => {
+    // values yields empty elements as undefined
+    const result = [...["a", , "c"].myValues()];
+    expect(result).toStrictEqual(["a", undefined, "c"]);
+  });
 });

@@ -9,7 +9,11 @@ Array.prototype.mySlice = function (start = 0, end = this.length) {
 
   let arr = [];
   for (let i = start; i < end; i++) {
-    arr.push(this[i]);
+    if (i in this) {
+      arr[arr.length] = this[i];
+    } else {
+      arr.length += 1;
+    }
   }
 
   return arr;

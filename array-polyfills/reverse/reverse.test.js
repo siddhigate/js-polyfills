@@ -8,4 +8,18 @@ describe("reverse method", () => {
     expect(result).toEqual(expectedResult);
     expect(arr).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const arr = ["a", undefined, "c", "d"];
+    const result = arr.myReverse();
+    const expectedResult = ["d", "c", undefined, "a"];
+    expect(result).toStrictEqual(expectedResult);
+  });
+
+  test("array containing empty elements", () => {
+    const arr = ["a", , "c", "d"];
+    const result = arr.myReverse();
+    expect(result).toStrictEqual(["d", "c", , "a"]);
+    expect(2 in result).toBe(false);
+  });
 });

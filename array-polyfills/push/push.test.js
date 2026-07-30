@@ -9,4 +9,18 @@ describe("push method", () => {
     expect(result).toEqual(expectedResult);
     expect(array).toEqual(expectedArray);
   });
+
+  test("array containing undefined elements", () => {
+    const array = ["a", undefined, "c"];
+    const result = array.myPush("z");
+    expect(result).toBe(4);
+    expect(array).toStrictEqual(["a", undefined, "c", "z"]);
+  });
+
+  test("array containing empty elements", () => {
+    const array = ["a", , "c"];
+    const result = array.myPush("z");
+    expect(result).toBe(4);
+    expect(array).toStrictEqual(["a", , "c", "z"]);
+  });
 });

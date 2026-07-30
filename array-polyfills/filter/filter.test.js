@@ -21,4 +21,27 @@ describe("filter method", () => {
     const expectedResult = [];
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const fn = jest.fn(() => true);
+    const arr = ["a", undefined, "c"];
+
+    const result = arr.myFilter(fn);
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(2, undefined, 1, arr);
+    expect(result).toStrictEqual(["a", undefined, "c"]);
+  });
+
+  test("array containing empty elements", () => {
+    const fn = jest.fn(() => true);
+    const arr = ["a", , "c"];
+
+    const result = arr.myFilter(fn);
+
+    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenNthCalledWith(1, "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, "c", 2, arr);
+    expect(result).toStrictEqual(["a", "c"]);
+  });
 });

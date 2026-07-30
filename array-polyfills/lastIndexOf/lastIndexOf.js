@@ -3,7 +3,7 @@ Array.prototype.myLastIndexOf = function (
   fromIndex = this.length - 1
 ) {
   for (let i = fromIndex; i >= 0; i--) {
-    if (this[i] === element) {
+    if (i in this && this[i] === element) {
       return i;
     }
   }

@@ -33,4 +33,27 @@ describe("findIndex method", () => {
     expect(callback).toHaveBeenNthCalledWith(1, 789, 2, arr);
     expect(callback).toHaveBeenNthCalledWith(2, 456, 1, arr);
   });
+
+  test("array containing undefined elements", () => {
+    const fn = jest.fn(() => false);
+    const arr = ["a", undefined, "c"];
+
+    arr.myFindLastIndex(fn);
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(2, undefined, 1, arr);
+  });
+
+  test("array containing empty elements", () => {
+    const fn = jest.fn(() => false);
+    const arr = ["a", , "c"];
+
+    // findLastIndex does not skip empty elements, it reads them as undefined
+    arr.myFindLastIndex(fn);
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(1, "c", 2, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, undefined, 1, arr);
+    expect(fn).toHaveBeenNthCalledWith(3, "a", 0, arr);
+  });
 });
