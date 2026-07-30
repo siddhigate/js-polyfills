@@ -16,4 +16,27 @@ describe("forEach method", () => {
     const expectedResult = { 0: "a", 1: "b", 2: "c", 4: 0, 5: "d" };
     expect(result).toEqual(expectedResult);
   });
+
+  test("array containing undefined elements", () => {
+    const fn = jest.fn();
+    const arr = ["a", undefined, "c"];
+
+    arr.myForEach(fn);
+
+    expect(fn).toHaveBeenCalledTimes(3);
+    expect(fn).toHaveBeenNthCalledWith(1, "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, undefined, 1, arr);
+    expect(fn).toHaveBeenNthCalledWith(3, "c", 2, arr);
+  });
+
+  test("array containing empty elements", () => {
+    const fn = jest.fn();
+    const arr = ["a", , "c"];
+
+    arr.myForEach(fn);
+
+    expect(fn).toHaveBeenCalledTimes(2);
+    expect(fn).toHaveBeenNthCalledWith(1, "a", 0, arr);
+    expect(fn).toHaveBeenNthCalledWith(2, "c", 2, arr);
+  });
 });
